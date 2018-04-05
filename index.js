@@ -19,12 +19,12 @@ async function run() {
   const schema = await weaveSchemas({
     endpoints: [
       {
-        namespace: '_carwashUSAexpress',
+        namespace: '_Carwash_USA_Express',
         typePrefix: 'Primary',
         url: CWUE
       },
       {
-        namespace: '_clone',
+        namespace: '_Cloned_CWUE',
         typePrefix: 'Secondary',
         url: CLONE
       }
