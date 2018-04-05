@@ -8,7 +8,7 @@ import { weaveSchemas } from 'graphql-weaver'
 
 if (!process.browser) global.fetch = fetch
 
-const PORT = 3010
+const PORT = 3000
 const app = express()
 
 const CWUE = 'https://api.graphcms.com/simple/v1/carwashusaexpress'
@@ -33,8 +33,8 @@ async function run() {
 
   app.use(cors({ allow: '*' }))
   app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }))
-  app.get('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
-  app.post('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
+  app.get('/', graphiqlExpress({ endpointURL: '/graphql' }))
+  // app.post('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 
   app.listen(PORT, () => {
     console.log(`running on ${PORT}`)
