@@ -35,7 +35,7 @@ async function run() {
       namespace: '_Carwash_USA_Express',
       typePrefix: 'Primary',
       url: CWUE
-    },
+    }
   ]
   const otherEndpointData = [
     {
@@ -46,22 +46,29 @@ async function run() {
   ]
 
   let activeEndpoints = primaryEndpointData
+  let schema = await weaveSchemas({ endpoints: activeEndpoints })
+  
 
-  const schema = await weaveSchemas({ activeEndpoints })
-
-  const determineSchema = req => {
+  const determineSchema = (req, res, next) => {
+    console.log(JSON.stringify(req.body))
     const isLocationsQuery = JSON.stringify(req.body).indexOf('allLocations') !== -1
     if (isLocationsQuery) {
       activeEndpoints = primaryEndpointData.concat(otherEndpointData)
     }
     console.log(activeEndpoints)
-    return req
+    // schema = await weaveSchemas({ endpoints: activeEndpoints })
+    // return graphqlExpress({ schema })
+    // return res
+    // return
+    next()
   }
+
+  
 
   app.use(cors({ allow: '*' }))
   app.use('/graphql',
     bodyParser.json(),
-    req => determineSchema(req),
+    determineSchema,
     graphqlExpress({ schema })
   )
   app.get('/', graphiqlExpress({ endpointURL: '/graphql' }))
