@@ -8,11 +8,11 @@ import { weaveSchemas } from 'graphql-weaver'
 
 if (!process.browser) global.fetch = fetch
 
-const PORT = 3000
+const PORT = 3001
 const app = express()
 
-const CWUE = 'https://api.graphcms.com/simple/v1/carwashusaexpress'
-const CLONE = 'https://api.graphcms.com/simple/v1/cjfjtoyj6015w0150471puqoo'
+const CWUE = process.env.BASE
+const CLONE = process.env.SECONDARY
 const ALL_ENDPOINTS = [CWUE, CLONE]
 
 async function run() {
