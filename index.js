@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import { weaveSchemas } from 'graphql-weaver'
+require('dotenv').config()
 
 if (!process.browser) global.fetch = fetch
 
