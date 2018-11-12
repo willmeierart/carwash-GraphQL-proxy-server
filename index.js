@@ -7,7 +7,7 @@ import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import { weaveSchemas } from 'graphql-weaver'
 require('dotenv').config()
 
-import geoRouter from './routes/geo'
+// import geoRouter from './routes/geo'
 
 if (!process.browser) global.fetch = fetch
 
@@ -38,7 +38,7 @@ async function run () {
 
 	// app.use('/geo', geoRouter)
 
-	app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }))
+	app.post('/graphql', bodyParser.json(), graphqlExpress({ schema }))
 	app.get('/', graphiqlExpress({ endpointURL: '/graphql' }))
 	// app.post('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 
