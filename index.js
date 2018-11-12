@@ -36,7 +36,7 @@ async function run () {
 
 	app.use(cors({ allow: '*' }))
 
-	app.use('/geo', geoRouter)
+	// app.use('/geo', geoRouter)
 
 	app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }))
 	app.get('/', graphiqlExpress({ endpointURL: '/graphql' }))
